@@ -14,10 +14,15 @@ namespace IC4EGO
     {
         Labda labda = new Labda();
         int tick = 0;
+        Kapu kapu = new Kapu();
         public Form1()
         {
             InitializeComponent();
+            labda.Top = (panel1.Height - labda.Height) / 2;
             panel1.Controls.Add(labda);
+            kapu.Top = ((panel1.Height + labda.Height) / 2) - kapu.Height;
+            kapu.Left = 910;
+            panel1.Controls.Add(kapu);
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -26,11 +31,19 @@ namespace IC4EGO
             if (tick>310)
             {
                 timer1.Stop();
+                button1.Visible = true;
             }
             else
             {
                 labda.Mozog(tick);
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            foUC kezelo = new foUC();
+            panel1.Controls.Add(kezelo);
         }
     }
 }

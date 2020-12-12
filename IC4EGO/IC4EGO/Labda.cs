@@ -13,9 +13,8 @@ namespace IC4EGO
         public Labda()
         {
             AutoSize = false;
-            Width = 60;
+            Width = 80;
             Height = Width;
-            Top = 220;
             Paint += Labda_Paint;
         }
 
@@ -26,7 +25,20 @@ namespace IC4EGO
 
         protected void DrawImage(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.White), 0, 0, Width, Height);
+            //kör
+            g.FillEllipse(new SolidBrush(Color.White), 0, 0, Width, Height); 
+            //vízszintes
+            g.FillRectangle(new SolidBrush(Color.Black), 0, Height / 2, Width, 2);
+            g.FillRectangle(new SolidBrush(Color.Black), Width/15, (Height / 2)-(Height/4), 9*Width/10, 2);
+            g.FillRectangle(new SolidBrush(Color.Black), Width / 15, (Height / 2) + (Height / 4), 9 * Width / 10, 2);
+            //függőleges felső
+            g.FillRectangle(new SolidBrush(Color.Black),  Height / 2,0,2 ,Width/5 );
+            g.FillRectangle(new SolidBrush(Color.Black), (Height / 2) - (Height / 4),Width / 15 ,2 , Width / 6 );
+            g.FillRectangle(new SolidBrush(Color.Black), (Height / 2) + (Height / 4), Width / 15, 2, Width / 6);
+            //függőleges alsó
+            g.FillRectangle(new SolidBrush(Color.Black), Height / 2, Height - Width / 5, 2, Width / 5);
+            g.FillRectangle(new SolidBrush(Color.Black), (Height / 2) - (Height / 4), Height- Width / 15 - Width / 6, 2, Width / 6);
+            g.FillRectangle(new SolidBrush(Color.Black), (Height / 2) + (Height / 4), Height- Width / 15 - Width / 6, 2, Width / 6);
         }
 
         public void Mozog(int tick)

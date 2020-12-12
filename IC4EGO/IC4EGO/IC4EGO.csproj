@@ -83,6 +83,9 @@
     <Compile Include="foUC.Designer.cs">
       <DependentUpon>foUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kapu.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Labda.cs">
       <SubType>Component</SubType>
     </Compile>
