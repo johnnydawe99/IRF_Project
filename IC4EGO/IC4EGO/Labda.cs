@@ -8,13 +8,14 @@ using System.Windows.Forms;
 
 namespace IC4EGO
 {
-    class Labda :Button
+    public class Labda :Label
     {
         public Labda()
         {
             AutoSize = false;
             Width = 60;
             Height = Width;
+            Top = 220;
             Paint += Labda_Paint;
         }
 
@@ -29,28 +30,28 @@ namespace IC4EGO
         }
 
         public void Mozog(int tick)
-        {            
-            int range = tick - 1 / 5;
+        {
+            var range = (tick - 1) / 62;
             switch (range)
             {
                 case 0:
-                    Top += (1 / 2);
-                    Left += 1;
+                    Top -= 2;
+                    Left += 3;
                     break;
                 case 1:
-                    Top += (1 / 3);
-                    Left += 1;
+                    Top -= 1;
+                    Left += 3;
                     break;
                 case 2:
-                    Left += 1;
+                    Left += 3;
                     break;
                 case 3:
-                    Top += (1 / 2);
-                    Left += 1;
+                    Top += 1;
+                    Left += 3;
                     break;
                 case 4:
-                    Top += (1 / 2);
-                    Left += 1;
+                    Top += 2;
+                    Left += 3;
                     break;
             }
         }
