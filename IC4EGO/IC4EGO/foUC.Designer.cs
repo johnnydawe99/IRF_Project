@@ -50,7 +50,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(469, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(827, 476);
+            this.dataGridView1.Size = new System.Drawing.Size(828, 493);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -109,7 +109,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(460, 293);
+            this.chart1.Size = new System.Drawing.Size(460, 310);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             // 
@@ -125,7 +125,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "foUC";
-            this.Size = new System.Drawing.Size(1299, 483);
+            this.Size = new System.Drawing.Size(1300, 500);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);

@@ -74,8 +74,14 @@
     <Compile Include="foUC.Designer.cs">
       <DependentUpon>foUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Labda.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="foUC.resx">
       <DependentUpon>foUC.cs</DependentUpon>
     </EmbeddedResource>
