@@ -23,7 +23,7 @@ namespace IC4EGO
             kapu.Top = ((panel1.Height -kapu.Height) / 2);
             kapu.Left = 910;
             panel1.Controls.Add(kapu);
-            button1.Visible = false;
+            button1.Visible = true;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

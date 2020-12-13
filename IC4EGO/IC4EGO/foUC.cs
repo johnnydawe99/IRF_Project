@@ -15,19 +15,42 @@ namespace IC4EGO
     public partial class foUC : UserControl
     {
         MeccsEntities context = new MeccsEntities();
+
+        DateTime kezd;
+        DateTime veg;
+        List<Mecc> eredmeny = new List<Mecc>();
         public foUC()
         {
             InitializeComponent();
 
             context.Meccs.Load();
 
-            var eredmeny = (from y in context.Meccs
+            eredmeny = (from y in context.Meccs
                             select y).ToList();
 
             listBox1.DataSource = (from x in eredmeny
                                    select x.hazai).Distinct().ToList();
 
             Refresh(eredmeny);
+
+           
+
+            kezd = (from i in context.Meccs
+                    select i.datum).Min();
+            veg = (from y in context.Meccs
+                   select y.datum).Max();
+        }
+
+        void Refresh(List<Mecc> ered)
+        {
+            dataGridView1.DataSource = ered;
+
+            chart1.DataSource = (from i in ered
+                                 group i by new { i.fordulo } into diagram
+                                 select new {
+                                 fordulo= diagram.Key.fordulo,
+                                 nezoszam=diagram.Sum(i=>i.nezoszam)
+                                 }).ToList();
 
             var series = chart1.Series[0];
             series.ChartType = SeriesChartType.Column;
@@ -43,18 +66,53 @@ namespace IC4EGO
             chartArea.AxisY.MajorGrid.Enabled = false;
         }
 
-        void Refresh(List<Mecc> ered)
-        {
-            dataGridView1.DataSource = ered;
-                        
-            chart1.DataSource = dataGridView1.DataSource;
-        }
-
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var eredmeny = (from x in context.Meccs
+            eredmeny = (from x in context.Meccs
                             where x.hazai == listBox1.SelectedItem.ToString() || x.vendeg == listBox1.SelectedItem.ToString()
                             select x).ToList();
+            Refresh(eredmeny);
+        }
+
+        
+
+        private void Tbkezd_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                kezd = DateTime.Parse(tbkezd.Text);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            eredmeny = (from x in context.Meccs
+                            where x.datum >= kezd && x.datum<=veg
+                            select x).ToList();
+            Refresh(eredmeny);
+        }
+
+        
+        private void Tbveg_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                veg = DateTime.Parse(tbveg.Text);
+            }
+            catch (Exception ex)
+            {
+                                
+            }
+            eredmeny = (from x in context.Meccs
+                            where x.datum <= veg && x.datum>=kezd
+                            select x).ToList();
+            Refresh(eredmeny);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            eredmeny = (from i in context.Meccs
+                            select i).ToList();
             Refresh(eredmeny);
         }
     }
