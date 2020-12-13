@@ -18,11 +18,12 @@ namespace IC4EGO
         public Form1()
         {
             InitializeComponent();
-            labda.Top = (panel1.Height - labda.Height) / 2;
+            labda.Top = (panel1.Height +kapu.Height) / 2-labda.Height-10;
             panel1.Controls.Add(labda);
-            kapu.Top = ((panel1.Height + labda.Height) / 2) - kapu.Height;
+            kapu.Top = ((panel1.Height -kapu.Height) / 2);
             kapu.Left = 910;
             panel1.Controls.Add(kapu);
+            button1.Visible = false;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -44,6 +45,11 @@ namespace IC4EGO
             panel1.Controls.Clear();
             foUC kezelo = new foUC();
             panel1.Controls.Add(kezelo);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }

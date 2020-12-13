@@ -28,6 +28,7 @@ namespace IC4EGO
             g.FillRectangle(new SolidBrush(Color.Yellow), 0, 0, Width / 10, Height);
             g.FillRectangle(new SolidBrush(Color.Yellow), 0, 0, Width , Height/50);
             g.FillRectangle(new SolidBrush(Color.Yellow), Width - Width / 20, 0, Width / 20, Height);
+            g.FillRectangle(new SolidBrush(Color.Yellow), 0, Height- Height / 125, Width, Height / 125);
         }
     }
 }
