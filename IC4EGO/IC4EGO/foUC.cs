@@ -28,20 +28,17 @@ namespace IC4EGO
             eredmeny = (from y in context.Meccs
                             select y).ToList();
 
-            listBox1.DataSource = (from x in eredmeny
+            listBox1.DataSource = (from x in context.Meccs
                                    select x.hazai).Distinct().ToList();
-
             Refresh(eredmeny);
-
-           
-
+            
             kezd = (from i in context.Meccs
                     select i.datum).Min();
             veg = (from y in context.Meccs
                    select y.datum).Max();
         }
 
-        void Refresh(List<Mecc> ered)
+        public void Refresh(List<Mecc> ered)
         {
             dataGridView1.DataSource = ered;
 
@@ -78,35 +75,50 @@ namespace IC4EGO
 
         private void Tbkezd_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                kezd = DateTime.Parse(tbkezd.Text);
-            }
-            catch (Exception ex)
-            {
-                
-            }
-            eredmeny = (from x in context.Meccs
+            kezd = DatumKonvert(tbkezd.Text);
+            Console.WriteLine(kezd);
+            var ered = (from x in eredmeny
                             where x.datum >= kezd && x.datum<=veg
                             select x).ToList();
-            Refresh(eredmeny);
+            Refresh(ered);
         }
 
         
         private void Tbveg_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                veg = DateTime.Parse(tbveg.Text);
-            }
-            catch (Exception ex)
-            {
-                                
-            }
-            eredmeny = (from x in context.Meccs
+            veg = DatumKonvert(tbveg.Text);
+            
+            var ered = (from x in eredmeny
                             where x.datum <= veg && x.datum>=kezd
                             select x).ToList();
-            Refresh(eredmeny);
+            Refresh(ered);
+        }
+
+        public bool CheckDate(string datum)
+        {
+            try
+            {
+                DateTime dt= DateTime.Parse(datum);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public DateTime DatumKonvert(string datum)
+        {
+            if (CheckDate(datum)==true)
+            {
+                DateTime siker;
+                DateTime.TryParse(datum, out siker);
+                return siker;
+            }
+            else
+            {
+                return new DateTime(0001,01,01);
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
