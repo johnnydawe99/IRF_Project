@@ -71,11 +71,11 @@ namespace IC4EGO
             Refresh(eredmeny);
         }
 
-        
+        Datum datum = new Datum();
 
         private void Tbkezd_TextChanged(object sender, EventArgs e)
         {
-            kezd = DatumKonvert(tbkezd.Text);
+            kezd = datum.DatumKonvert(tbkezd.Text);
             Console.WriteLine(kezd);
             var ered = (from x in eredmeny
                             where x.datum >= kezd && x.datum<=veg
@@ -86,40 +86,13 @@ namespace IC4EGO
         
         private void Tbveg_TextChanged(object sender, EventArgs e)
         {
-            veg = DatumKonvert(tbveg.Text);
+            veg = datum.DatumKonvert(tbveg.Text);
             
             var ered = (from x in eredmeny
                             where x.datum <= veg && x.datum>=kezd
                             select x).ToList();
             Refresh(ered);
-        }
-
-        public bool CheckDate(string datum)
-        {
-            try
-            {
-                DateTime dt= DateTime.Parse(datum);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public DateTime DatumKonvert(string datum)
-        {
-            if (CheckDate(datum)==true)
-            {
-                DateTime siker;
-                DateTime.TryParse(datum, out siker);
-                return siker;
-            }
-            else
-            {
-                return new DateTime(0001,01,01);
-            }
-        }
+        }        
 
         private void Button1_Click(object sender, EventArgs e)
         {
