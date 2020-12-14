@@ -13,7 +13,7 @@ namespace IC4EGO.Test
             Test,
             TestCase("2020.02.02",true),
             TestCase("Március",false),
-            TestCase("03",false)
+            TestCase("3",false)
         ]
         public void TestCheckDate(string datumstring, bool expected)
         {
