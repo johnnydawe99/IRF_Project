@@ -76,7 +76,7 @@ namespace IC4EGO
         private void Tbkezd_TextChanged(object sender, EventArgs e)
         {
             kezd = datum.DatumKonvert(tbkezd.Text);
-            Console.WriteLine(kezd);
+
             var ered = (from x in eredmeny
                             where x.datum >= kezd && x.datum<=veg
                             select x).ToList();
